@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header dashboard={true}/>
       <Container>
         <CardContainer>
           <Card>

@@ -8,16 +8,19 @@ import Logo from '../../assets/logo.svg';
 
 interface HeaderProps {
   size?: 'small' | 'large';
+  dashboard?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
-  <Container size={size}>
+const Header: React.FC<HeaderProps> = ({
+  size = 'large',
+  dashboard,
+}: HeaderProps) => (
+  <Container size={size} isDashboardPage={dashboard}>
     <header>
       <img src={Logo} alt="GoFinances" />
       <nav>
-        {
-          // Todo
-        }
+        <Link to={'/'}>Listagem</Link>
+        <Link to={'/import'}>Importar</Link>
       </nav>
     </header>
   </Container>

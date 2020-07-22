@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+  isDashboardPage?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -22,9 +23,13 @@ export const Container = styled.div<ContainerProps>`
         text-decoration: none;
         font-size: 16px;
         transition: opacity 0.2s;
+        border-bottom: ${({ isDashboardPage }) =>
+          isDashboardPage ? 'solid 3px orange' : 'none'};
 
         & + a {
           margin-left: 32px;
+          border-bottom: ${({ isDashboardPage }) =>
+            !isDashboardPage ? 'solid 3px orange' : 'none'};
         }
 
         &:hover {
