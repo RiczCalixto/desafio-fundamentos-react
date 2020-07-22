@@ -1,4 +1,4 @@
-import { Type, Balance } from './dashboard-response.model';
+import { Type } from './dashboard-response.model';
 
 export interface Transaction {
   id: string;
@@ -13,6 +13,12 @@ export interface Transaction {
 
 interface Category {
   title: string;
+}
+
+export interface Balance {
+  income: string;
+  outcome: string;
+  total: string;
 }
 
 export interface DashboardInformation {

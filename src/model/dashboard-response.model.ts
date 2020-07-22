@@ -17,13 +17,13 @@ interface CategoryResponse {
   updated_at: string;
 }
 
-export interface DataResponse {
-  transactions: TransactionResponse[];
-  balance: Balance;
+export interface BalanceResponse {
+  income: number;
+  outcome: number;
+  total: number;
 }
 
-export interface Balance {
-  income: string;
-  outcome: string;
-  total: string;
+export interface DataResponse {
+  transactions: TransactionResponse[];
+  balance: BalanceResponse;
 }
