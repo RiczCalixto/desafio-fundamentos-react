@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import income from '../../assets/income.svg';
-import outcome from '../../assets/outcome.svg';
-import total from '../../assets/total.svg';
+import incomeImg from '../../assets/income.svg';
+import outcomeImg from '../../assets/outcome.svg';
+import totalImg from '../../assets/total.svg';
 import Header from '../../components/Header';
-import formatValue from '../../utils/formatValue';
 import { Container, CardContainer, Card, TableContainer } from './styles';
 import { Transaction, Balance } from '../../model/dashboard.model';
 import { listTransactionUseCase } from '../../domain/list-transactions.use-case';
@@ -23,6 +22,8 @@ const Dashboard: React.FC = () => {
     loadTransactions();
   }, []);
 
+  const { income, outcome, total } = balance;
+
   return (
     <>
       <Header dashboard={true} />
@@ -31,23 +32,23 @@ const Dashboard: React.FC = () => {
           <Card>
             <header>
               <p>Entradas</p>
-              <img src={income} alt="Income" />
+              <img src={incomeImg} alt="Income" />
             </header>
-            <h1 data-testid="balance-income">{balance.income}</h1>
+            <h1 data-testid="balance-income">{income}</h1>
           </Card>
           <Card>
             <header>
               <p>Saídas</p>
-              <img src={outcome} alt="Outcome" />
+              <img src={outcomeImg} alt="Outcome" />
             </header>
-            <h1 data-testid="balance-outcome">{balance.outcome}</h1>
+            <h1 data-testid="balance-outcome">{outcome}</h1>
           </Card>
           <Card total>
             <header>
               <p>Total</p>
-              <img src={total} alt="Total" />
+              <img src={totalImg} alt="Total" />
             </header>
-            <h1 data-testid="balance-total">{balance.total}</h1>
+            <h1 data-testid="balance-total">{total}</h1>
           </Card>
         </CardContainer>
 
@@ -66,7 +67,11 @@ const Dashboard: React.FC = () => {
               {transactions?.map(transaction => (
                 <tr key={transaction.id}>
                   <td className="title">{transaction.title}</td>
-                  <td className="income">{transaction.formattedValue}</td>
+                  <td className={transaction.type}>
+                    {transaction.type === 'outcome'
+                      ? '- ' + transaction.formattedValue
+                      : transaction.formattedValue}
+                  </td>
                   <td>{transaction.category.title}</td>
                   <td>{transaction.formattedDate}</td>
                 </tr>
